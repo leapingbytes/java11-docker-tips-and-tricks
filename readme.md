@@ -5,6 +5,16 @@ This post documents progress of our quest for reasonably sized Java 11 docker im
 
 **NOTE** You can run `run.sh` script from the root of this repo to build and run all example images.
 
+## TL;DR;
+
+- [Step 0 (openjdk:11-jre)](#step-0-openjdk11-jre) 267MB
+- [Step 1 (openjdk11:jre-11.0.2.9-alpine)](#step-1-openjdk11jre-11029-alpine) 137MB
+- [Step 2 (zulu-openjdk-alpine:11.0.3-jre)](#step-2-zulu-openjdk-alpine1103-jre) 130MB
+- [Step 3 (JLink)](#step-3-jlink) 57MB
+- [Step 4 (jvm only alpine)](#step-4-jvm-only-alpine) 52.8MB
+- [Step 5 (have to have New Relic)](#step-5-have-to-have-new-relic) 64.5MB
+- [Step 6 (HTTPS)](#step-6-https) 85.7MB
+
 ## Step 0 (openjdk:11-jre)
 
 To be honest, this was **not** step 0 for us. We have heard about alpine. 
