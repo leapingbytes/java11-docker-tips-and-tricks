@@ -1,0 +1,160 @@
+Sending build context to Docker daemon  27.14kB
+Step 1/10 : FROM azul/zulu-openjdk-alpine:11.0.3 AS jlink
+ ---> f2599f50903a
+Step 2/10 : ENV JAVA_MODULES="java.base,java.datatransfer,java.desktop,java.instrument,java.logging,java.management,java.management.rmi,java.rmi,java.naming,java.security.jgss,java.security.sasl,java.sql,java.transaction.xa,java.xml,jdk.unsupported,java.instrument"
+ ---> Using cache
+ ---> 2c2acb6d84d7
+Step 3/10 : RUN jlink --compress=2 --no-header-files --no-man-pages --strip-debug     --module-path $JAVA_HOME/jmods     --add-modules ${JAVA_MODULES}     --output /jlinked
+ ---> Using cache
+ ---> 3016c0a0db51
+Step 4/10 : FROM alpine
+ ---> 961769676411
+Step 5/10 : COPY --from=jlink /jlinked /opt/jlinked/
+ ---> Using cache
+ ---> a60f8d5faa59
+Step 6/10 : ENV JAVA_HOME=/opt/jlinked
+ ---> Using cache
+ ---> 01a9cc60fe78
+Step 7/10 : ENV PATH=$JAVA_HOME/bin:$PATH
+ ---> Using cache
+ ---> 8ec851aaf06b
+Step 8/10 : COPY build/libs/step-3-all.jar ${DOCKER_HOME}/app.jar
+ ---> a1a63cb6dc44
+Step 9/10 : EXPOSE 8080
+ ---> Running in bbcda7e6fa29
+Removing intermediate container bbcda7e6fa29
+ ---> 7a9c955f29fb
+Step 10/10 : CMD java -jar app.jar
+ ---> Running in 2c5aa1d7f5ed
+Removing intermediate container 2c5aa1d7f5ed
+ ---> 0d0cb3bc0a46
+Successfully built 0d0cb3bc0a46
+Successfully tagged java11-tips-and-tricks:step-3
+Sending build context to Docker daemon  28.67kB
+Step 1/10 : FROM azul/zulu-openjdk-alpine:11.0.3 AS jlink
+ ---> f2599f50903a
+Step 2/10 : ENV JAVA_MODULES="java.base,java.datatransfer,java.desktop,java.instrument,java.logging,java.management,java.management.rmi,java.rmi,java.naming,java.security.jgss,java.security.sasl,java.sql,java.transaction.xa,java.xml,jdk.unsupported,java.instrument"
+ ---> Using cache
+ ---> 2c2acb6d84d7
+Step 3/10 : RUN jlink --compress=2 --no-header-files --no-man-pages --strip-debug     --module-path $JAVA_HOME/jmods     --add-modules ${JAVA_MODULES}     --output /jlinked
+ ---> Using cache
+ ---> 3016c0a0db51
+Step 4/10 : FROM alpine
+ ---> 961769676411
+Step 5/10 : COPY --from=jlink /jlinked /opt/jlinked/
+ ---> Using cache
+ ---> a60f8d5faa59
+Step 6/10 : ENV JAVA_HOME=/opt/jlinked
+ ---> Using cache
+ ---> 01a9cc60fe78
+Step 7/10 : ENV PATH=$JAVA_HOME/bin:$PATH
+ ---> Using cache
+ ---> 8ec851aaf06b
+Step 8/10 : COPY build/libs/step-3-all.jar ${DOCKER_HOME}/app.jar
+ ---> 9cd87e19b69f
+Step 9/10 : EXPOSE 8080
+ ---> Running in 9cf212246b0e
+Removing intermediate container 9cf212246b0e
+ ---> c7977b87f668
+Step 10/10 : CMD java -jar app.jar
+ ---> Running in 04925b680f04
+Removing intermediate container 04925b680f04
+ ---> e693bc45419f
+Successfully built e693bc45419f
+Successfully tagged java11-tips-and-tricks:step-3
+Sending build context to Docker daemon  30.21kB
+Step 1/10 : FROM azul/zulu-openjdk-alpine:11.0.3 AS jlink
+ ---> f2599f50903a
+Step 2/10 : ENV JAVA_MODULES="java.base,java.datatransfer,java.desktop,java.instrument,java.logging,java.management,java.management.rmi,java.rmi,java.naming,java.security.jgss,java.security.sasl,java.sql,java.transaction.xa,java.xml,jdk.unsupported,java.instrument"
+ ---> Using cache
+ ---> 2c2acb6d84d7
+Step 3/10 : RUN jlink --compress=2 --no-header-files --no-man-pages --strip-debug     --module-path $JAVA_HOME/jmods     --add-modules ${JAVA_MODULES}     --output /jlinked
+ ---> Using cache
+ ---> 3016c0a0db51
+Step 4/10 : FROM alpine
+ ---> 961769676411
+Step 5/10 : COPY --from=jlink /jlinked /opt/jlinked/
+ ---> Using cache
+ ---> a60f8d5faa59
+Step 6/10 : ENV JAVA_HOME=/opt/jlinked
+ ---> Using cache
+ ---> 01a9cc60fe78
+Step 7/10 : ENV PATH=$JAVA_HOME/bin:$PATH
+ ---> Using cache
+ ---> 8ec851aaf06b
+Step 8/10 : COPY build/libs/step-3-all.jar ${DOCKER_HOME}/app.jar
+ ---> 1241e55d7860
+Step 9/10 : EXPOSE 8080
+ ---> Running in c08b9480b0c7
+Removing intermediate container c08b9480b0c7
+ ---> ee45da440023
+Step 10/10 : CMD java -jar app.jar
+ ---> Running in d33e9ab488ee
+Removing intermediate container d33e9ab488ee
+ ---> c1b6a55144f1
+Successfully built c1b6a55144f1
+Successfully tagged java11-tips-and-tricks:step-3
+Sending build context to Docker daemon  31.23kB
+Step 1/10 : FROM azul/zulu-openjdk-alpine:11.0.3 AS jlink
+ ---> f2599f50903a
+Step 2/10 : ENV JAVA_MODULES="java.base,java.datatransfer,java.desktop,java.instrument,java.logging,java.management,java.management.rmi,java.rmi,java.naming,java.security.jgss,java.security.sasl,java.sql,java.transaction.xa,java.xml,jdk.unsupported,java.instrument"
+ ---> Using cache
+ ---> 2c2acb6d84d7
+Step 3/10 : RUN jlink --compress=2 --no-header-files --no-man-pages --strip-debug     --module-path $JAVA_HOME/jmods     --add-modules ${JAVA_MODULES}     --output /jlinked
+ ---> Using cache
+ ---> 3016c0a0db51
+Step 4/10 : FROM alpine
+ ---> 961769676411
+Step 5/10 : COPY --from=jlink /jlinked /opt/jlinked/
+ ---> Using cache
+ ---> a60f8d5faa59
+Step 6/10 : ENV JAVA_HOME=/opt/jlinked
+ ---> Using cache
+ ---> 01a9cc60fe78
+Step 7/10 : ENV PATH=$JAVA_HOME/bin:$PATH
+ ---> Using cache
+ ---> 8ec851aaf06b
+Step 8/10 : COPY build/libs/step-3-all.jar ${DOCKER_HOME}/app.jar
+ ---> c735285d5a72
+Step 9/10 : EXPOSE 8080
+ ---> Running in accfff238034
+Removing intermediate container accfff238034
+ ---> 6f44bb5dd72e
+Step 10/10 : CMD java -jar app.jar
+ ---> Running in 2e878f61218d
+Removing intermediate container 2e878f61218d
+ ---> 3e470fe0a7c2
+Successfully built 3e470fe0a7c2
+Successfully tagged java11-tips-and-tricks:step-3
+Sending build context to Docker daemon  32.77kB
+Step 1/10 : FROM azul/zulu-openjdk-alpine:11.0.3 AS jlink
+ ---> f2599f50903a
+Step 2/10 : ENV JAVA_MODULES="java.base,java.datatransfer,java.desktop,java.instrument,java.logging,java.management,java.management.rmi,java.rmi,java.naming,java.security.jgss,java.security.sasl,java.sql,java.transaction.xa,java.xml,jdk.unsupported,java.instrument"
+ ---> Using cache
+ ---> 2c2acb6d84d7
+Step 3/10 : RUN jlink --compress=2 --no-header-files --no-man-pages --strip-debug     --module-path $JAVA_HOME/jmods     --add-modules ${JAVA_MODULES}     --output /jlinked
+ ---> Using cache
+ ---> 3016c0a0db51
+Step 4/10 : FROM alpine
+ ---> 961769676411
+Step 5/10 : COPY --from=jlink /jlinked /opt/jlinked/
+ ---> Using cache
+ ---> a60f8d5faa59
+Step 6/10 : ENV JAVA_HOME=/opt/jlinked
+ ---> Using cache
+ ---> 01a9cc60fe78
+Step 7/10 : ENV PATH=$JAVA_HOME/bin:$PATH
+ ---> Using cache
+ ---> 8ec851aaf06b
+Step 8/10 : COPY build/libs/step-3-all.jar ${DOCKER_HOME}/app.jar
+ ---> 33ba45e7d9f8
+Step 9/10 : EXPOSE 8080
+ ---> Running in 2224ad9dca15
+Removing intermediate container 2224ad9dca15
+ ---> d51ccebffea3
+Step 10/10 : CMD java -jar app.jar
+ ---> Running in 3d78fedfc4c5
+Removing intermediate container 3d78fedfc4c5
+ ---> 4498871d522d
+Successfully built 4498871d522d
+Successfully tagged java11-tips-and-tricks:step-3

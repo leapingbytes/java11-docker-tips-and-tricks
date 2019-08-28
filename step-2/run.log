@@ -1,0 +1,75 @@
+Sending build context to Docker daemon  26.62kB
+Step 1/4 : FROM azul/zulu-openjdk-alpine:11.0.3-jre
+ ---> 1381f4025eb1
+Step 2/4 : COPY build/libs/step-2-all.jar ${DOCKER_HOME}/app.jar
+ ---> aa6fb002174e
+Step 3/4 : EXPOSE 8080
+ ---> Running in f363157bd937
+Removing intermediate container f363157bd937
+ ---> 0c77e545e883
+Step 4/4 : CMD java -jar app.jar
+ ---> Running in 80477957510b
+Removing intermediate container 80477957510b
+ ---> 890149304cd1
+Successfully built 890149304cd1
+Successfully tagged java11-tips-and-tricks:step-2
+Sending build context to Docker daemon  27.65kB
+Step 1/4 : FROM azul/zulu-openjdk-alpine:11.0.3-jre
+ ---> 1381f4025eb1
+Step 2/4 : COPY build/libs/step-2-all.jar ${DOCKER_HOME}/app.jar
+ ---> bf434de5c132
+Step 3/4 : EXPOSE 8080
+ ---> Running in 63d394f5997f
+Removing intermediate container 63d394f5997f
+ ---> 4fc340c2d380
+Step 4/4 : CMD java -jar app.jar
+ ---> Running in 5858743e389e
+Removing intermediate container 5858743e389e
+ ---> efb393c24ea8
+Successfully built efb393c24ea8
+Successfully tagged java11-tips-and-tricks:step-2
+Sending build context to Docker daemon  28.16kB
+Step 1/4 : FROM azul/zulu-openjdk-alpine:11.0.3-jre
+ ---> 1381f4025eb1
+Step 2/4 : COPY build/libs/step-2-all.jar ${DOCKER_HOME}/app.jar
+ ---> f98638f111f3
+Step 3/4 : EXPOSE 8080
+ ---> Running in 5709c73ac5cc
+Removing intermediate container 5709c73ac5cc
+ ---> d47b2a3605ee
+Step 4/4 : CMD java -jar app.jar
+ ---> Running in 44ed08199435
+Removing intermediate container 44ed08199435
+ ---> 20e7bec81f72
+Successfully built 20e7bec81f72
+Successfully tagged java11-tips-and-tricks:step-2
+Sending build context to Docker daemon  28.67kB
+Step 1/4 : FROM azul/zulu-openjdk-alpine:11.0.3-jre
+ ---> 1381f4025eb1
+Step 2/4 : COPY build/libs/step-2-all.jar ${DOCKER_HOME}/app.jar
+ ---> 816dad450b6e
+Step 3/4 : EXPOSE 8080
+ ---> Running in 83e703e0498b
+Removing intermediate container 83e703e0498b
+ ---> 27bf94c208f5
+Step 4/4 : CMD java -jar app.jar
+ ---> Running in 6412dcab3b15
+Removing intermediate container 6412dcab3b15
+ ---> 4b8ee18fbb5b
+Successfully built 4b8ee18fbb5b
+Successfully tagged java11-tips-and-tricks:step-2
+Sending build context to Docker daemon  29.18kB
+Step 1/4 : FROM azul/zulu-openjdk-alpine:11.0.3-jre
+ ---> 1381f4025eb1
+Step 2/4 : COPY build/libs/step-2-all.jar ${DOCKER_HOME}/app.jar
+ ---> 000f104cdfeb
+Step 3/4 : EXPOSE 8080
+ ---> Running in 83a786f22c7b
+Removing intermediate container 83a786f22c7b
+ ---> fb278a57a5c9
+Step 4/4 : CMD java -jar app.jar
+ ---> Running in c72ef1599d56
+Removing intermediate container c72ef1599d56
+ ---> 5056b3d62750
+Successfully built 5056b3d62750
+Successfully tagged java11-tips-and-tricks:step-2

@@ -1,0 +1,230 @@
+Sending build context to Docker daemon  27.14kB
+Step 1/15 : FROM azul/zulu-openjdk-alpine:11.0.3 AS jlink
+ ---> f2599f50903a
+Step 2/15 : ENV JAVA_MODULES="java.base,java.datatransfer,java.desktop,java.instrument,java.logging,java.management,java.management.rmi,java.rmi,java.naming,java.security.jgss,java.security.sasl,java.sql,java.transaction.xa,java.xml,jdk.unsupported,java.instrument"
+ ---> Using cache
+ ---> 2c2acb6d84d7
+Step 3/15 : RUN jlink --compress=2 --no-header-files --no-man-pages --strip-debug     --module-path $JAVA_HOME/jmods     --add-modules ${JAVA_MODULES}     --output /jlinked
+ ---> Using cache
+ ---> 3016c0a0db51
+Step 4/15 : FROM alpine:3.10 as jvm_only_alpine
+ ---> 961769676411
+Step 5/15 : RUN rm -f /lib/libcrypto.so.1.1 /lib/libssl.so.1.1
+ ---> Using cache
+ ---> 0d15866dc820
+Step 6/15 : RUN touch /tmp/placeholder
+ ---> Using cache
+ ---> b780f09caaa6
+Step 7/15 : FROM scratch
+ ---> 
+Step 8/15 : ENV DOCKER_HOME=/opt/customer
+ ---> Using cache
+ ---> a1db0e322607
+Step 9/15 : WORKDIR ${DOCKER_HOME}
+ ---> Using cache
+ ---> ab4354e1a1c8
+Step 10/15 : COPY --from=jvm_only_alpine /lib/* /lib/
+ ---> Using cache
+ ---> 3ffd693ed59b
+Step 11/15 : COPY --from=jvm_only_alpine /tmp/* /tmp/
+ ---> Using cache
+ ---> 3bfd34487996
+Step 12/15 : COPY --from=jlink /jlinked /opt/jlinked/
+ ---> Using cache
+ ---> e5584eae1770
+Step 13/15 : COPY build/libs/step-4-all.jar ${DOCKER_HOME}/app.jar
+ ---> f4f3f5cf25db
+Step 14/15 : EXPOSE 8080
+ ---> Running in f2d9abefbd81
+Removing intermediate container f2d9abefbd81
+ ---> a61fd8e5823b
+Step 15/15 : CMD [ "/opt/jlinked/bin/java", "-jar", "app.jar" ]
+ ---> Running in c3a9b3c021a5
+Removing intermediate container c3a9b3c021a5
+ ---> 4be16eca0818
+Successfully built 4be16eca0818
+Successfully tagged java11-tips-and-tricks:step-4
+Sending build context to Docker daemon  29.18kB
+Step 1/15 : FROM azul/zulu-openjdk-alpine:11.0.3 AS jlink
+ ---> f2599f50903a
+Step 2/15 : ENV JAVA_MODULES="java.base,java.datatransfer,java.desktop,java.instrument,java.logging,java.management,java.management.rmi,java.rmi,java.naming,java.security.jgss,java.security.sasl,java.sql,java.transaction.xa,java.xml,jdk.unsupported,java.instrument"
+ ---> Using cache
+ ---> 2c2acb6d84d7
+Step 3/15 : RUN jlink --compress=2 --no-header-files --no-man-pages --strip-debug     --module-path $JAVA_HOME/jmods     --add-modules ${JAVA_MODULES}     --output /jlinked
+ ---> Using cache
+ ---> 3016c0a0db51
+Step 4/15 : FROM alpine:3.10 as jvm_only_alpine
+ ---> 961769676411
+Step 5/15 : RUN rm -f /lib/libcrypto.so.1.1 /lib/libssl.so.1.1
+ ---> Using cache
+ ---> 0d15866dc820
+Step 6/15 : RUN touch /tmp/placeholder
+ ---> Using cache
+ ---> b780f09caaa6
+Step 7/15 : FROM scratch
+ ---> 
+Step 8/15 : ENV DOCKER_HOME=/opt/customer
+ ---> Using cache
+ ---> a1db0e322607
+Step 9/15 : WORKDIR ${DOCKER_HOME}
+ ---> Using cache
+ ---> ab4354e1a1c8
+Step 10/15 : COPY --from=jvm_only_alpine /lib/* /lib/
+ ---> Using cache
+ ---> 3ffd693ed59b
+Step 11/15 : COPY --from=jvm_only_alpine /tmp/* /tmp/
+ ---> Using cache
+ ---> 3bfd34487996
+Step 12/15 : COPY --from=jlink /jlinked /opt/jlinked/
+ ---> Using cache
+ ---> e5584eae1770
+Step 13/15 : COPY build/libs/step-4-all.jar ${DOCKER_HOME}/app.jar
+ ---> 6e8bacfa0aff
+Step 14/15 : EXPOSE 8080
+ ---> Running in ef1b4345faa1
+Removing intermediate container ef1b4345faa1
+ ---> b37b5d591c85
+Step 15/15 : CMD [ "/opt/jlinked/bin/java", "-jar", "app.jar" ]
+ ---> Running in fb344cc16d4b
+Removing intermediate container fb344cc16d4b
+ ---> 0a01230019ab
+Successfully built 0a01230019ab
+Successfully tagged java11-tips-and-tricks:step-4
+Sending build context to Docker daemon  30.72kB
+Step 1/15 : FROM azul/zulu-openjdk-alpine:11.0.3 AS jlink
+ ---> f2599f50903a
+Step 2/15 : ENV JAVA_MODULES="java.base,java.datatransfer,java.desktop,java.instrument,java.logging,java.management,java.management.rmi,java.rmi,java.naming,java.security.jgss,java.security.sasl,java.sql,java.transaction.xa,java.xml,jdk.unsupported,java.instrument"
+ ---> Using cache
+ ---> 2c2acb6d84d7
+Step 3/15 : RUN jlink --compress=2 --no-header-files --no-man-pages --strip-debug     --module-path $JAVA_HOME/jmods     --add-modules ${JAVA_MODULES}     --output /jlinked
+ ---> Using cache
+ ---> 3016c0a0db51
+Step 4/15 : FROM alpine:3.10 as jvm_only_alpine
+ ---> 961769676411
+Step 5/15 : RUN rm -f /lib/libcrypto.so.1.1 /lib/libssl.so.1.1
+ ---> Using cache
+ ---> 0d15866dc820
+Step 6/15 : RUN touch /tmp/placeholder
+ ---> Using cache
+ ---> b780f09caaa6
+Step 7/15 : FROM scratch
+ ---> 
+Step 8/15 : ENV DOCKER_HOME=/opt/customer
+ ---> Using cache
+ ---> a1db0e322607
+Step 9/15 : WORKDIR ${DOCKER_HOME}
+ ---> Using cache
+ ---> ab4354e1a1c8
+Step 10/15 : COPY --from=jvm_only_alpine /lib/* /lib/
+ ---> Using cache
+ ---> 3ffd693ed59b
+Step 11/15 : COPY --from=jvm_only_alpine /tmp/* /tmp/
+ ---> Using cache
+ ---> 3bfd34487996
+Step 12/15 : COPY --from=jlink /jlinked /opt/jlinked/
+ ---> Using cache
+ ---> e5584eae1770
+Step 13/15 : COPY build/libs/step-4-all.jar ${DOCKER_HOME}/app.jar
+ ---> 71bf94c70648
+Step 14/15 : EXPOSE 8080
+ ---> Running in 469ffe35a193
+Removing intermediate container 469ffe35a193
+ ---> 1e7e945d42a9
+Step 15/15 : CMD [ "/opt/jlinked/bin/java", "-jar", "app.jar" ]
+ ---> Running in 4cd54b12b056
+Removing intermediate container 4cd54b12b056
+ ---> 6c18be7c7827
+Successfully built 6c18be7c7827
+Successfully tagged java11-tips-and-tricks:step-4
+Sending build context to Docker daemon  32.77kB
+Step 1/15 : FROM azul/zulu-openjdk-alpine:11.0.3 AS jlink
+ ---> f2599f50903a
+Step 2/15 : ENV JAVA_MODULES="java.base,java.datatransfer,java.desktop,java.instrument,java.logging,java.management,java.management.rmi,java.rmi,java.naming,java.security.jgss,java.security.sasl,java.sql,java.transaction.xa,java.xml,jdk.unsupported,java.instrument"
+ ---> Using cache
+ ---> 2c2acb6d84d7
+Step 3/15 : RUN jlink --compress=2 --no-header-files --no-man-pages --strip-debug     --module-path $JAVA_HOME/jmods     --add-modules ${JAVA_MODULES}     --output /jlinked
+ ---> Using cache
+ ---> 3016c0a0db51
+Step 4/15 : FROM alpine:3.10 as jvm_only_alpine
+ ---> 961769676411
+Step 5/15 : RUN rm -f /lib/libcrypto.so.1.1 /lib/libssl.so.1.1
+ ---> Using cache
+ ---> 0d15866dc820
+Step 6/15 : RUN touch /tmp/placeholder
+ ---> Using cache
+ ---> b780f09caaa6
+Step 7/15 : FROM scratch
+ ---> 
+Step 8/15 : ENV DOCKER_HOME=/opt/customer
+ ---> Using cache
+ ---> a1db0e322607
+Step 9/15 : WORKDIR ${DOCKER_HOME}
+ ---> Using cache
+ ---> ab4354e1a1c8
+Step 10/15 : COPY --from=jvm_only_alpine /lib/* /lib/
+ ---> Using cache
+ ---> 3ffd693ed59b
+Step 11/15 : COPY --from=jvm_only_alpine /tmp/* /tmp/
+ ---> Using cache
+ ---> 3bfd34487996
+Step 12/15 : COPY --from=jlink /jlinked /opt/jlinked/
+ ---> Using cache
+ ---> e5584eae1770
+Step 13/15 : COPY build/libs/step-4-all.jar ${DOCKER_HOME}/app.jar
+ ---> 6c2c4570b027
+Step 14/15 : EXPOSE 8080
+ ---> Running in b6f8eaf18739
+Removing intermediate container b6f8eaf18739
+ ---> 2c78fbdc861a
+Step 15/15 : CMD [ "/opt/jlinked/bin/java", "-jar", "app.jar" ]
+ ---> Running in 3c32263bcfd0
+Removing intermediate container 3c32263bcfd0
+ ---> 0249a1be5ea0
+Successfully built 0249a1be5ea0
+Successfully tagged java11-tips-and-tricks:step-4
+Sending build context to Docker daemon   34.3kB
+Step 1/15 : FROM azul/zulu-openjdk-alpine:11.0.3 AS jlink
+ ---> f2599f50903a
+Step 2/15 : ENV JAVA_MODULES="java.base,java.datatransfer,java.desktop,java.instrument,java.logging,java.management,java.management.rmi,java.rmi,java.naming,java.security.jgss,java.security.sasl,java.sql,java.transaction.xa,java.xml,jdk.unsupported,java.instrument"
+ ---> Using cache
+ ---> 2c2acb6d84d7
+Step 3/15 : RUN jlink --compress=2 --no-header-files --no-man-pages --strip-debug     --module-path $JAVA_HOME/jmods     --add-modules ${JAVA_MODULES}     --output /jlinked
+ ---> Using cache
+ ---> 3016c0a0db51
+Step 4/15 : FROM alpine:3.10 as jvm_only_alpine
+ ---> 961769676411
+Step 5/15 : RUN rm -f /lib/libcrypto.so.1.1 /lib/libssl.so.1.1
+ ---> Using cache
+ ---> 0d15866dc820
+Step 6/15 : RUN touch /tmp/placeholder
+ ---> Using cache
+ ---> b780f09caaa6
+Step 7/15 : FROM scratch
+ ---> 
+Step 8/15 : ENV DOCKER_HOME=/opt/customer
+ ---> Using cache
+ ---> a1db0e322607
+Step 9/15 : WORKDIR ${DOCKER_HOME}
+ ---> Using cache
+ ---> ab4354e1a1c8
+Step 10/15 : COPY --from=jvm_only_alpine /lib/* /lib/
+ ---> Using cache
+ ---> 3ffd693ed59b
+Step 11/15 : COPY --from=jvm_only_alpine /tmp/* /tmp/
+ ---> Using cache
+ ---> 3bfd34487996
+Step 12/15 : COPY --from=jlink /jlinked /opt/jlinked/
+ ---> Using cache
+ ---> e5584eae1770
+Step 13/15 : COPY build/libs/step-4-all.jar ${DOCKER_HOME}/app.jar
+ ---> c33d0328470b
+Step 14/15 : EXPOSE 8080
+ ---> Running in 8e4c3b996ab2
+Removing intermediate container 8e4c3b996ab2
+ ---> 0bde6562620c
+Step 15/15 : CMD [ "/opt/jlinked/bin/java", "-jar", "app.jar" ]
+ ---> Running in eb9f6f95b388
+Removing intermediate container eb9f6f95b388
+ ---> 0ca48fca407d
+Successfully built 0ca48fca407d
+Successfully tagged java11-tips-and-tricks:step-4

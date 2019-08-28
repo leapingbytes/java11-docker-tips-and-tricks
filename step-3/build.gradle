@@ -1,0 +1,21 @@
+apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+}
+
+shadowJar {
+    archiveBaseName = 'step-3'
+    archiveClassifier = 'all'
+    archiveVersion = version
+}
+
+jar {
+    dependsOn shadowJar
+    manifest {
+        attributes(
+                'Main-Class': 'java11.docker.tips.and.tricks.Main'
+        )
+    }
+}

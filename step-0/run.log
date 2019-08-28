@@ -1,0 +1,111 @@
+Sending build context to Docker daemon  83.97kB
+Step 1/4 : FROM adoptopenjdk/openjdk11:jre-11.0.2.9-alpine
+ ---> 537d4252c5e9
+Step 2/4 : COPY build/libs/step-1-all.jar ${DOCKER_HOME}/app.jar
+ ---> 0fa46cc18fd8
+Step 3/4 : EXPOSE 8080
+ ---> Running in c5414fcca0ed
+Removing intermediate container c5414fcca0ed
+ ---> 53196b431b8e
+Step 4/4 : CMD java -jar app.jar
+ ---> Running in 517cae6b8457
+Removing intermediate container 517cae6b8457
+ ---> 9b3ed836c01f
+Successfully built 9b3ed836c01f
+Successfully tagged java11-tips-and-tricks:step-1
+Sending build context to Docker daemon  84.99kB
+Step 1/4 : FROM adoptopenjdk/openjdk11:jre-11.0.2.9-alpine
+ ---> 537d4252c5e9
+Step 2/4 : COPY build/libs/step-1-all.jar ${DOCKER_HOME}/app.jar
+ ---> ee8fe2a6a901
+Step 3/4 : EXPOSE 8080
+ ---> Running in 78516d78c84f
+Removing intermediate container 78516d78c84f
+ ---> 1d2d84f90954
+Step 4/4 : CMD java -jar app.jar
+ ---> Running in 28d75874faac
+Removing intermediate container 28d75874faac
+ ---> a73ea0fbd824
+Successfully built a73ea0fbd824
+Successfully tagged java11-tips-and-tricks:step-1
+Sending build context to Docker daemon  28.16kB
+Step 1/4 : FROM openjdk:11-jre-slim
+11-jre-slim: Pulling from library/openjdk
+1ab2bdfe9778: Pulling fs layer
+7aaf9a088d61: Pulling fs layer
+b9283b89acb2: Pulling fs layer
+1e2c32308970: Pulling fs layer
+1e2c32308970: Waiting
+b9283b89acb2: Verifying Checksum
+b9283b89acb2: Download complete
+7aaf9a088d61: Verifying Checksum
+7aaf9a088d61: Download complete
+1ab2bdfe9778: Verifying Checksum
+1ab2bdfe9778: Download complete
+1ab2bdfe9778: Pull complete
+7aaf9a088d61: Pull complete
+b9283b89acb2: Pull complete
+1e2c32308970: Verifying Checksum
+1e2c32308970: Download complete
+1e2c32308970: Pull complete
+Digest: sha256:1a7704cfb7b6cc34a1eb88e572df15229cfcecc96f5529bb9570391bdf527122
+Status: Downloaded newer image for openjdk:11-jre-slim
+ ---> 81f946fdb475
+Step 2/4 : COPY build/libs/step-0-all.jar ${DOCKER_HOME}/app.jar
+Sending build context to Docker daemon  28.67kB
+Step 1/4 : FROM openjdk:11-jre-slim
+ ---> 81f946fdb475
+Step 2/4 : COPY build/libs/step-0-all.jar ${DOCKER_HOME}/app.jar
+ ---> be09df31672e
+Step 3/4 : EXPOSE 8080
+ ---> Running in df2355c36c37
+Removing intermediate container df2355c36c37
+ ---> 5f38e0a95431
+Step 4/4 : CMD java -jar app.jar
+ ---> Running in a6d5ad6dec28
+Removing intermediate container a6d5ad6dec28
+ ---> b71be761976c
+Successfully built b71be761976c
+Successfully tagged java11-tips-and-tricks:step-0
+Sending build context to Docker daemon  29.18kB
+Step 1/4 : FROM openjdk:11-jre
+11-jre: Pulling from library/openjdk
+9cc2ad81d40d: Pulling fs layer
+e6cb98e32a52: Pulling fs layer
+ae1b8d879bad: Pulling fs layer
+2383fa4462e7: Pulling fs layer
+0f0b3c916bb0: Pulling fs layer
+d9da9fd82b16: Pulling fs layer
+0f0b3c916bb0: Waiting
+d9da9fd82b16: Waiting
+2383fa4462e7: Waiting
+ae1b8d879bad: Verifying Checksum
+ae1b8d879bad: Download complete
+2383fa4462e7: Download complete
+0f0b3c916bb0: Verifying Checksum
+0f0b3c916bb0: Download complete
+e6cb98e32a52: Verifying Checksum
+d9da9fd82b16: Download complete
+9cc2ad81d40d: Verifying Checksum
+9cc2ad81d40d: Download complete
+9cc2ad81d40d: Pull complete
+e6cb98e32a52: Pull complete
+ae1b8d879bad: Pull complete
+2383fa4462e7: Pull complete
+0f0b3c916bb0: Pull complete
+d9da9fd82b16: Pull complete
+Digest: sha256:f4c514d5fb55645bbd3aa6e9df8b695610d91186aab79ebf7237a93570864fc3
+Status: Downloaded newer image for openjdk:11-jre
+ ---> 87784439f039
+Step 2/4 : COPY build/libs/step-0-all.jar ${DOCKER_HOME}/app.jar
+ ---> 892ed80219a3
+Step 3/4 : EXPOSE 8080
+ ---> Running in 4f257559e788
+Removing intermediate container 4f257559e788
+ ---> 804f1ed429c6
+Step 4/4 : CMD java -jar app.jar
+ ---> Running in ad802c0a7ebb
+Removing intermediate container ad802c0a7ebb
+ ---> 532b291c062f
+Successfully built 532b291c062f
+Successfully tagged java11-tips-and-tricks:step-0

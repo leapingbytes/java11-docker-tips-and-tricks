@@ -1,0 +1,275 @@
+Sending build context to Docker daemon   29.7kB
+Step 1/18 : FROM azul/zulu-openjdk-alpine:11.0.3 AS jlink
+ ---> f2599f50903a
+Step 2/18 : RUN wget -q -O /tmp/newrelic-java.zip "https://download.newrelic.com/newrelic/java-agent/newrelic-agent/5.3.0/newrelic-java.zip"
+ ---> Using cache
+ ---> 8fb20d7bce4c
+Step 3/18 : RUN cd /tmp && unzip /tmp/newrelic-java.zip
+ ---> Using cache
+ ---> 24c248904b52
+Step 4/18 : ENV JAVA_MODULES="java.base,java.datatransfer,java.desktop,java.instrument,java.logging,java.management,java.management.rmi,java.rmi,java.naming,java.security.jgss,java.security.sasl,java.sql,java.transaction.xa,java.xml,jdk.unsupported,java.instrument"
+ ---> Using cache
+ ---> 2e4a10d7906a
+Step 5/18 : RUN jlink --compress=2 --no-header-files --no-man-pages --strip-debug     --bind-services     --module-path $JAVA_HOME/jmods     --add-modules ${JAVA_MODULES}     --output /jlinked
+ ---> Using cache
+ ---> 64b52460aa7f
+Step 6/18 : FROM alpine:3.10 as jvm_only_alpine
+ ---> 961769676411
+Step 7/18 : RUN rm -f /lib/libcrypto.so.1.1 /lib/libssl.so.1.1
+ ---> Using cache
+ ---> 0d15866dc820
+Step 8/18 : RUN touch /tmp/placeholder
+ ---> Using cache
+ ---> b780f09caaa6
+Step 9/18 : FROM scratch
+ ---> 
+Step 10/18 : ENV DOCKER_HOME=/opt/customer
+ ---> Using cache
+ ---> a1db0e322607
+Step 11/18 : WORKDIR ${DOCKER_HOME}
+ ---> Using cache
+ ---> ab4354e1a1c8
+Step 12/18 : COPY --from=jvm_only_alpine /lib/* /lib/
+ ---> Using cache
+ ---> 3ffd693ed59b
+Step 13/18 : COPY --from=jvm_only_alpine /tmp/* /tmp/
+ ---> Using cache
+ ---> 3bfd34487996
+Step 14/18 : COPY --from=jlink /tmp/newrelic/newrelic.jar /tmp/newrelic/newrelic.yml /opt/customer/newrelic/
+ ---> Using cache
+ ---> 57b10a5ec41f
+Step 15/18 : COPY --from=jlink /jlinked /opt/jlinked/
+ ---> Using cache
+ ---> 11bc50b0a8ab
+Step 16/18 : COPY build/libs/step-6-all.jar ${DOCKER_HOME}/app.jar
+ ---> d5a556a303e7
+Step 17/18 : EXPOSE 8080
+ ---> Running in 1ae17d48cc01
+Removing intermediate container 1ae17d48cc01
+ ---> 47a9bbc02b26
+Step 18/18 : CMD [ "/opt/jlinked/bin/java", "-javaagent:/opt/customer/newrelic/newrelic.jar", "-jar", "app.jar" ]
+ ---> Running in b37565cfc740
+Removing intermediate container b37565cfc740
+ ---> dfe0bd1edc8f
+Successfully built dfe0bd1edc8f
+Successfully tagged java11-tips-and-tricks:step-6
+Sending build context to Docker daemon  32.26kB
+Step 1/18 : FROM azul/zulu-openjdk-alpine:11.0.3 AS jlink
+ ---> f2599f50903a
+Step 2/18 : RUN wget -q -O /tmp/newrelic-java.zip "https://download.newrelic.com/newrelic/java-agent/newrelic-agent/5.3.0/newrelic-java.zip"
+ ---> Using cache
+ ---> 8fb20d7bce4c
+Step 3/18 : RUN cd /tmp && unzip /tmp/newrelic-java.zip
+ ---> Using cache
+ ---> 24c248904b52
+Step 4/18 : ENV JAVA_MODULES="java.base,java.datatransfer,java.desktop,java.instrument,java.logging,java.management,java.management.rmi,java.rmi,java.naming,java.security.jgss,java.security.sasl,java.sql,java.transaction.xa,java.xml,jdk.unsupported,java.instrument"
+ ---> Using cache
+ ---> 2e4a10d7906a
+Step 5/18 : RUN jlink --compress=2 --no-header-files --no-man-pages --strip-debug     --bind-services     --module-path $JAVA_HOME/jmods     --add-modules ${JAVA_MODULES}     --output /jlinked
+ ---> Using cache
+ ---> 64b52460aa7f
+Step 6/18 : FROM alpine:3.10 as jvm_only_alpine
+ ---> 961769676411
+Step 7/18 : RUN rm -f /lib/libcrypto.so.1.1 /lib/libssl.so.1.1
+ ---> Using cache
+ ---> 0d15866dc820
+Step 8/18 : RUN touch /tmp/placeholder
+ ---> Using cache
+ ---> b780f09caaa6
+Step 9/18 : FROM scratch
+ ---> 
+Step 10/18 : ENV DOCKER_HOME=/opt/customer
+ ---> Using cache
+ ---> a1db0e322607
+Step 11/18 : WORKDIR ${DOCKER_HOME}
+ ---> Using cache
+ ---> ab4354e1a1c8
+Step 12/18 : COPY --from=jvm_only_alpine /lib/* /lib/
+ ---> Using cache
+ ---> 3ffd693ed59b
+Step 13/18 : COPY --from=jvm_only_alpine /tmp/* /tmp/
+ ---> Using cache
+ ---> 3bfd34487996
+Step 14/18 : COPY --from=jlink /tmp/newrelic/newrelic.jar /tmp/newrelic/newrelic.yml /opt/customer/newrelic/
+ ---> Using cache
+ ---> 57b10a5ec41f
+Step 15/18 : COPY --from=jlink /jlinked /opt/jlinked/
+ ---> Using cache
+ ---> 11bc50b0a8ab
+Step 16/18 : COPY build/libs/step-6-all.jar ${DOCKER_HOME}/app.jar
+ ---> 85ce751b6efe
+Step 17/18 : EXPOSE 8080
+ ---> Running in 0f82a8212d9c
+Removing intermediate container 0f82a8212d9c
+ ---> 21e38bac8a83
+Step 18/18 : CMD [ "/opt/jlinked/bin/java", "-javaagent:/opt/customer/newrelic/newrelic.jar", "-jar", "app.jar" ]
+ ---> Running in f2d49a4e7d14
+Removing intermediate container f2d49a4e7d14
+ ---> 03f19b1ff0a0
+Successfully built 03f19b1ff0a0
+Successfully tagged java11-tips-and-tricks:step-6
+Sending build context to Docker daemon   34.3kB
+Step 1/18 : FROM azul/zulu-openjdk-alpine:11.0.3 AS jlink
+ ---> f2599f50903a
+Step 2/18 : RUN wget -q -O /tmp/newrelic-java.zip "https://download.newrelic.com/newrelic/java-agent/newrelic-agent/5.3.0/newrelic-java.zip"
+ ---> Using cache
+ ---> 8fb20d7bce4c
+Step 3/18 : RUN cd /tmp && unzip /tmp/newrelic-java.zip
+ ---> Using cache
+ ---> 24c248904b52
+Step 4/18 : ENV JAVA_MODULES="java.base,java.datatransfer,java.desktop,java.instrument,java.logging,java.management,java.management.rmi,java.rmi,java.naming,java.security.jgss,java.security.sasl,java.sql,java.transaction.xa,java.xml,jdk.unsupported,java.instrument"
+ ---> Using cache
+ ---> 2e4a10d7906a
+Step 5/18 : RUN jlink --compress=2 --no-header-files --no-man-pages --strip-debug     --bind-services     --module-path $JAVA_HOME/jmods     --add-modules ${JAVA_MODULES}     --output /jlinked
+ ---> Using cache
+ ---> 64b52460aa7f
+Step 6/18 : FROM alpine:3.10 as jvm_only_alpine
+ ---> 961769676411
+Step 7/18 : RUN rm -f /lib/libcrypto.so.1.1 /lib/libssl.so.1.1
+ ---> Using cache
+ ---> 0d15866dc820
+Step 8/18 : RUN touch /tmp/placeholder
+ ---> Using cache
+ ---> b780f09caaa6
+Step 9/18 : FROM scratch
+ ---> 
+Step 10/18 : ENV DOCKER_HOME=/opt/customer
+ ---> Using cache
+ ---> a1db0e322607
+Step 11/18 : WORKDIR ${DOCKER_HOME}
+ ---> Using cache
+ ---> ab4354e1a1c8
+Step 12/18 : COPY --from=jvm_only_alpine /lib/* /lib/
+ ---> Using cache
+ ---> 3ffd693ed59b
+Step 13/18 : COPY --from=jvm_only_alpine /tmp/* /tmp/
+ ---> Using cache
+ ---> 3bfd34487996
+Step 14/18 : COPY --from=jlink /tmp/newrelic/newrelic.jar /tmp/newrelic/newrelic.yml /opt/customer/newrelic/
+ ---> Using cache
+ ---> 57b10a5ec41f
+Step 15/18 : COPY --from=jlink /jlinked /opt/jlinked/
+ ---> Using cache
+ ---> 11bc50b0a8ab
+Step 16/18 : COPY build/libs/step-6-all.jar ${DOCKER_HOME}/app.jar
+ ---> f3eb228c3ca7
+Step 17/18 : EXPOSE 8080
+ ---> Running in fc48a8a4af45
+Removing intermediate container fc48a8a4af45
+ ---> 01684c854069
+Step 18/18 : CMD [ "/opt/jlinked/bin/java", "-javaagent:/opt/customer/newrelic/newrelic.jar", "-jar", "app.jar" ]
+ ---> Running in 3876496bb9ae
+Removing intermediate container 3876496bb9ae
+ ---> 419a52252376
+Successfully built 419a52252376
+Successfully tagged java11-tips-and-tricks:step-6
+Sending build context to Docker daemon  36.86kB
+Step 1/18 : FROM azul/zulu-openjdk-alpine:11.0.3 AS jlink
+ ---> f2599f50903a
+Step 2/18 : RUN wget -q -O /tmp/newrelic-java.zip "https://download.newrelic.com/newrelic/java-agent/newrelic-agent/5.3.0/newrelic-java.zip"
+ ---> Using cache
+ ---> 8fb20d7bce4c
+Step 3/18 : RUN cd /tmp && unzip /tmp/newrelic-java.zip
+ ---> Using cache
+ ---> 24c248904b52
+Step 4/18 : ENV JAVA_MODULES="java.base,java.datatransfer,java.desktop,java.instrument,java.logging,java.management,java.management.rmi,java.rmi,java.naming,java.security.jgss,java.security.sasl,java.sql,java.transaction.xa,java.xml,jdk.unsupported,java.instrument"
+ ---> Using cache
+ ---> 2e4a10d7906a
+Step 5/18 : RUN jlink --compress=2 --no-header-files --no-man-pages --strip-debug     --bind-services     --module-path $JAVA_HOME/jmods     --add-modules ${JAVA_MODULES}     --output /jlinked
+ ---> Using cache
+ ---> 64b52460aa7f
+Step 6/18 : FROM alpine:3.10 as jvm_only_alpine
+ ---> 961769676411
+Step 7/18 : RUN rm -f /lib/libcrypto.so.1.1 /lib/libssl.so.1.1
+ ---> Using cache
+ ---> 0d15866dc820
+Step 8/18 : RUN touch /tmp/placeholder
+ ---> Using cache
+ ---> b780f09caaa6
+Step 9/18 : FROM scratch
+ ---> 
+Step 10/18 : ENV DOCKER_HOME=/opt/customer
+ ---> Using cache
+ ---> a1db0e322607
+Step 11/18 : WORKDIR ${DOCKER_HOME}
+ ---> Using cache
+ ---> ab4354e1a1c8
+Step 12/18 : COPY --from=jvm_only_alpine /lib/* /lib/
+ ---> Using cache
+ ---> 3ffd693ed59b
+Step 13/18 : COPY --from=jvm_only_alpine /tmp/* /tmp/
+ ---> Using cache
+ ---> 3bfd34487996
+Step 14/18 : COPY --from=jlink /tmp/newrelic/newrelic.jar /tmp/newrelic/newrelic.yml /opt/customer/newrelic/
+ ---> Using cache
+ ---> 57b10a5ec41f
+Step 15/18 : COPY --from=jlink /jlinked /opt/jlinked/
+ ---> Using cache
+ ---> 11bc50b0a8ab
+Step 16/18 : COPY build/libs/step-6-all.jar ${DOCKER_HOME}/app.jar
+ ---> 1c7200023301
+Step 17/18 : EXPOSE 8080
+ ---> Running in 0ab2b3efda5a
+Removing intermediate container 0ab2b3efda5a
+ ---> 3cf3cc8fc6be
+Step 18/18 : CMD [ "/opt/jlinked/bin/java", "-javaagent:/opt/customer/newrelic/newrelic.jar", "-jar", "app.jar" ]
+ ---> Running in e22963772dd2
+Removing intermediate container e22963772dd2
+ ---> 805067a8b2b7
+Successfully built 805067a8b2b7
+Successfully tagged java11-tips-and-tricks:step-6
+Sending build context to Docker daemon  38.91kB
+Step 1/18 : FROM azul/zulu-openjdk-alpine:11.0.3 AS jlink
+ ---> f2599f50903a
+Step 2/18 : RUN wget -q -O /tmp/newrelic-java.zip "https://download.newrelic.com/newrelic/java-agent/newrelic-agent/5.3.0/newrelic-java.zip"
+ ---> Using cache
+ ---> 8fb20d7bce4c
+Step 3/18 : RUN cd /tmp && unzip /tmp/newrelic-java.zip
+ ---> Using cache
+ ---> 24c248904b52
+Step 4/18 : ENV JAVA_MODULES="java.base,java.datatransfer,java.desktop,java.instrument,java.logging,java.management,java.management.rmi,java.rmi,java.naming,java.security.jgss,java.security.sasl,java.sql,java.transaction.xa,java.xml,jdk.unsupported,java.instrument"
+ ---> Using cache
+ ---> 2e4a10d7906a
+Step 5/18 : RUN jlink --compress=2 --no-header-files --no-man-pages --strip-debug     --bind-services     --module-path $JAVA_HOME/jmods     --add-modules ${JAVA_MODULES}     --output /jlinked
+ ---> Using cache
+ ---> 64b52460aa7f
+Step 6/18 : FROM alpine:3.10 as jvm_only_alpine
+ ---> 961769676411
+Step 7/18 : RUN rm -f /lib/libcrypto.so.1.1 /lib/libssl.so.1.1
+ ---> Using cache
+ ---> 0d15866dc820
+Step 8/18 : RUN touch /tmp/placeholder
+ ---> Using cache
+ ---> b780f09caaa6
+Step 9/18 : FROM scratch
+ ---> 
+Step 10/18 : ENV DOCKER_HOME=/opt/customer
+ ---> Using cache
+ ---> a1db0e322607
+Step 11/18 : WORKDIR ${DOCKER_HOME}
+ ---> Using cache
+ ---> ab4354e1a1c8
+Step 12/18 : COPY --from=jvm_only_alpine /lib/* /lib/
+ ---> Using cache
+ ---> 3ffd693ed59b
+Step 13/18 : COPY --from=jvm_only_alpine /tmp/* /tmp/
+ ---> Using cache
+ ---> 3bfd34487996
+Step 14/18 : COPY --from=jlink /tmp/newrelic/newrelic.jar /tmp/newrelic/newrelic.yml /opt/customer/newrelic/
+ ---> Using cache
+ ---> 57b10a5ec41f
+Step 15/18 : COPY --from=jlink /jlinked /opt/jlinked/
+ ---> Using cache
+ ---> 11bc50b0a8ab
+Step 16/18 : COPY build/libs/step-6-all.jar ${DOCKER_HOME}/app.jar
+ ---> 7e8c44bc25f8
+Step 17/18 : EXPOSE 8080
+ ---> Running in 652205e76409
+Removing intermediate container 652205e76409
+ ---> c81ea273dd86
+Step 18/18 : CMD [ "/opt/jlinked/bin/java", "-javaagent:/opt/customer/newrelic/newrelic.jar", "-jar", "app.jar" ]
+ ---> Running in 59c048498364
+Removing intermediate container 59c048498364
+ ---> 86ff83b67f11
+Successfully built 86ff83b67f11
+Successfully tagged java11-tips-and-tricks:step-6

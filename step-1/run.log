@@ -1,0 +1,75 @@
+Sending build context to Docker daemon  83.97kB
+Step 1/4 : FROM adoptopenjdk/openjdk11:jre-11.0.2.9-alpine
+ ---> 537d4252c5e9
+Step 2/4 : COPY build/libs/step-1-all.jar ${DOCKER_HOME}/app.jar
+ ---> 0fa46cc18fd8
+Step 3/4 : EXPOSE 8080
+ ---> Running in c5414fcca0ed
+Removing intermediate container c5414fcca0ed
+ ---> 53196b431b8e
+Step 4/4 : CMD java -jar app.jar
+ ---> Running in 517cae6b8457
+Removing intermediate container 517cae6b8457
+ ---> 9b3ed836c01f
+Successfully built 9b3ed836c01f
+Successfully tagged java11-tips-and-tricks:step-1
+Sending build context to Docker daemon  84.99kB
+Step 1/4 : FROM adoptopenjdk/openjdk11:jre-11.0.2.9-alpine
+ ---> 537d4252c5e9
+Step 2/4 : COPY build/libs/step-1-all.jar ${DOCKER_HOME}/app.jar
+ ---> ee8fe2a6a901
+Step 3/4 : EXPOSE 8080
+ ---> Running in 78516d78c84f
+Removing intermediate container 78516d78c84f
+ ---> 1d2d84f90954
+Step 4/4 : CMD java -jar app.jar
+ ---> Running in 28d75874faac
+Removing intermediate container 28d75874faac
+ ---> a73ea0fbd824
+Successfully built a73ea0fbd824
+Successfully tagged java11-tips-and-tricks:step-1
+Sending build context to Docker daemon   85.5kB
+Step 1/4 : FROM adoptopenjdk/openjdk11:jre-11.0.2.9-alpine
+ ---> 537d4252c5e9
+Step 2/4 : COPY build/libs/step-1-all.jar ${DOCKER_HOME}/app.jar
+ ---> ceea0cb11db2
+Step 3/4 : EXPOSE 8080
+ ---> Running in 3bf031fb3ce0
+Removing intermediate container 3bf031fb3ce0
+ ---> 15d3931056d5
+Step 4/4 : CMD java -jar app.jar
+ ---> Running in 144348206f31
+Removing intermediate container 144348206f31
+ ---> 2c07a3c18b10
+Successfully built 2c07a3c18b10
+Successfully tagged java11-tips-and-tricks:step-1
+Sending build context to Docker daemon  86.02kB
+Step 1/4 : FROM adoptopenjdk/openjdk11:jre-11.0.2.9-alpine
+ ---> 537d4252c5e9
+Step 2/4 : COPY build/libs/step-1-all.jar ${DOCKER_HOME}/app.jar
+ ---> 0fe1ddbc3853
+Step 3/4 : EXPOSE 8080
+ ---> Running in 3c43b53eee7b
+Removing intermediate container 3c43b53eee7b
+ ---> f8ab8f32b670
+Step 4/4 : CMD java -jar app.jar
+ ---> Running in 03cec62659e3
+Removing intermediate container 03cec62659e3
+ ---> 36b8ee065c4c
+Successfully built 36b8ee065c4c
+Successfully tagged java11-tips-and-tricks:step-1
+Sending build context to Docker daemon  86.53kB
+Step 1/4 : FROM adoptopenjdk/openjdk11:jre-11.0.2.9-alpine
+ ---> 537d4252c5e9
+Step 2/4 : COPY build/libs/step-1-all.jar ${DOCKER_HOME}/app.jar
+ ---> c4d236f813f2
+Step 3/4 : EXPOSE 8080
+ ---> Running in 4678f9c2b140
+Removing intermediate container 4678f9c2b140
+ ---> 4b016e13beb7
+Step 4/4 : CMD java -jar app.jar
+ ---> Running in de98804b2cd2
+Removing intermediate container de98804b2cd2
+ ---> b02e55f569ac
+Successfully built b02e55f569ac
+Successfully tagged java11-tips-and-tricks:step-1

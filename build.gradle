@@ -1,0 +1,14 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    // buildscript dependencies can be used for build time plugins.
+    dependencies {
+        classpath "com.github.jengelman.gradle.plugins:shadow:5.1.0"
+    }
+}
+repositories {
+    // Use jcenter for resolving dependencies.
+    // You can declare any Maven/Ivy/file repository here.
+    jcenter()
+}
